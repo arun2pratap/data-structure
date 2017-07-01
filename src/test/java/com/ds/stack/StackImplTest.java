@@ -9,6 +9,7 @@ public class StackImplTest {
 
     @Test
     public void testStack(){
+        System.currentTimeMillis();
         assertEquals("","");
     }
 }
