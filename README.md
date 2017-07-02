@@ -6,3 +6,5 @@ com.ds.search.binary (using recursion and loop both)
 com.ds.sort.selection
     SelectionSort(using recursion)
             Complexity = n*2;
+
+     QuickSort using recursion.
