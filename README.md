@@ -12,3 +12,5 @@ com.ds.sort.selection
 
      LinkeDList - with insertion at start,end, arbitrary
                 - remove at position.
+
+     Tree - FunctionalTree - with depthFirstSearch
