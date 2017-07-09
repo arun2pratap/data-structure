@@ -26,5 +26,9 @@ public class BinaryTreeTest {
         System.out.println("  -InOrderTraversal");
         binaryTree.postOrderTraverse(binaryTree.getRoot());
         System.out.println("  -postOrderTraversal");
+
+
+        binaryTree.traverseOnlyLeft(binaryTree.getRoot());
+        System.out.println("  -postOrderTraversal");
     }
 }
