@@ -13,4 +13,6 @@ com.ds.sort.selection
      LinkeDList - with insertion at start,end, arbitrary
                 - remove at position.
 
-     Tree - FunctionalTree - with depthFirstSearch
+     Tree - FunctionalTree - with depthFirstTraverse
+
+     Tree - Binary Tree - InOrder, PreOrder, PostOrder Traversal Recursive.
