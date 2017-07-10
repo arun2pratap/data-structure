@@ -7,7 +7,30 @@ import org.junit.Test;
  */
 public class BinaryTreeTest {
     @Test
-    public void testBinaryTree() throws Exception {
+    public void testBinaryTreeTraversalRecursive() throws Exception {
+        BinaryTree<Integer> binaryTree = getIntegerBinaryTree();
+        binaryTree.preOrderTraverse(binaryTree.getRoot());
+        System.out.println("  -preOrderTraversal");
+        binaryTree.inOrderTraverse(binaryTree.getRoot());
+        System.out.println("  -InOrderTraversal");
+        binaryTree.postOrderTraverse(binaryTree.getRoot());
+        System.out.println("  -postOrderTraversal");
+
+
+        binaryTree.traverseOnlyLeft(binaryTree.getRoot());
+        System.out.println("  -postOrderTraversal");
+    }
+
+    @Test
+    public void testBinaryTreeTraversalNonRecursive(){
+        BinaryTree<Integer> integerBinaryTree = getIntegerBinaryTree();
+        integerBinaryTree.preOrderTraverseNonRecursive(integerBinaryTree.getRoot());
+        System.out.println("  -preOrderTraversal Non-recursive");
+        integerBinaryTree.inOrderTraverseNonRecursive(integerBinaryTree.getRoot());
+        System.out.println("  -preOrderTraversal Non-recursive");
+    }
+
+    private BinaryTree<Integer> getIntegerBinaryTree() {
         BinaryTree<Integer> binaryTree = new BinaryTree<>();
         binaryTree.addRoot(1);
         BinaryTree.Node<Integer> root = binaryTree.getRoot();
@@ -20,15 +43,7 @@ public class BinaryTreeTest {
         binaryTree.addChild(node5, 10, false);
         binaryTree.addChild(node4, 9, true);
         binaryTree.addChild(node4, 8, false);
-        binaryTree.preOrderTraverse(binaryTree.getRoot());
-        System.out.println("  -preOrderTraversal");
-        binaryTree.inOrderTraverse(binaryTree.getRoot());
-        System.out.println("  -InOrderTraversal");
-        binaryTree.postOrderTraverse(binaryTree.getRoot());
-        System.out.println("  -postOrderTraversal");
-
-
-        binaryTree.traverseOnlyLeft(binaryTree.getRoot());
-        System.out.println("  -postOrderTraversal");
+        return binaryTree;
     }
+
 }

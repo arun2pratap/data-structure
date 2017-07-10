@@ -1,5 +1,7 @@
 package com.ds.tree.binarytree;
 
+import java.util.Stack;
+
 public class BinaryTree<T> {
 
     private Node<T> root;
@@ -39,6 +41,39 @@ public class BinaryTree<T> {
         traverseOnlyLeft(node.left);
         if(node.right != null) {
             preOrderTraverse(node.right.left);
+        }
+    }
+
+    public void preOrderTraverseNonRecursive(Node<T> root) {
+        Stack<Node<T>> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            Node<T> node = stack.pop();
+            System.out.print(" " + node.value);
+            if(node.right != null){
+                stack.push(node.right);
+            }
+            if(node.left != null){
+                stack.push(node.left);
+            }
+        }
+    }
+
+    public void inOrderTraverseNonRecursive(Node<T> root) {
+        Stack<Node<T>> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            Node<T> node = stack.peek();
+            if(node.left != null){
+                stack.push(node.left);
+            }else {
+                System.out.print(" " + node.value);
+                if(node.right != null){
+                    stack.push(node.right);
+                }else {
+                    stack.pop();
+                }
+            }
         }
     }
 
