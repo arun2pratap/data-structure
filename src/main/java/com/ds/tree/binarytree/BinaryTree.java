@@ -6,6 +6,25 @@ public class BinaryTree<T> {
 
     private Node<T> root;
 
+    public static class Node<T> {
+        T value;
+        Node<T> left;
+        Node<T> right;
+
+        public Node(T value) {
+            this.value = value;
+        }
+
+    }
+
+    public void addRoot(T value) {
+        root = new Node<>(value);
+    }
+
+    public Node<T> getRoot() {
+        return root;
+    }
+
     public void inOrderTraverse(Node<T> node) {
         if (node == null) {
             return;
@@ -39,7 +58,7 @@ public class BinaryTree<T> {
         }
         System.out.print("  " + node.value);
         traverseOnlyLeft(node.left);
-        if(node.right != null) {
+        if (node.right != null) {
             preOrderTraverse(node.right.left);
         }
     }
@@ -47,13 +66,13 @@ public class BinaryTree<T> {
     public void preOrderTraverseNonRecursive(Node<T> root) {
         Stack<Node<T>> stack = new Stack<>();
         stack.push(root);
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             Node<T> node = stack.pop();
-            System.out.print(" " + node.value);
-            if(node.right != null){
+            System.out.print("  " + node.value);
+            if (node.right != null) {
                 stack.push(node.right);
             }
-            if(node.left != null){
+            if (node.left != null) {
                 stack.push(node.left);
             }
         }
@@ -62,62 +81,69 @@ public class BinaryTree<T> {
     public void inOrderTraverseNonRecursive(Node<T> root) {
         Stack<Node<T>> stack = new Stack<>();
         stack.push(root);
-        while (!stack.isEmpty()){
-            Node<T> node = stack.peek();
-            if(node.left != null){
-                stack.push(node.left);
-            }else {
-                System.out.print(" " + node.value);
-                if(node.right != null){
-                    stack.push(node.right);
-                }else {
-                    stack.pop();
+        Node<T> curr = root;
+        while (curr.left != null) {
+            curr = curr.left;
+            stack.push(curr);
+        }
+        while (!stack.isEmpty()) {
+            Node<T> node = stack.pop();
+            System.out.print("  " + node.value);
+            if (node.right != null) {
+                curr = node.right;
+                stack.push(curr);
+                while (curr.left != null) {
+                    curr = curr.left;
+                    stack.push(curr);
                 }
             }
         }
     }
 
-    public static class Node<T> {
-        T value;
-        private Node<T> left;
-        private Node<T> right;
-        private Node<T> parent;
-        private BinaryTree<T> containerTree;
-
-        public Node(Node<T> parent, BinaryTree<T> containerTree, T value) {
-            this.parent = parent;
-            this.containerTree = containerTree;
-            this.value = value;
+    public void postOrderTraverseNonRecursive(Node<T> root) {
+        Stack<Node<T>> stack = new Stack<>();
+        stack.push(root);
+        Node<T> curr = root;
+        while (curr.left != null) {
+            curr = curr.left;
+            while (curr.right != null) {
+                curr = curr.right;
+                stack.push(curr);
+            }
+            stack.push(curr);
+        }
+        while (!stack.isEmpty()) {
+            Node<T> node = stack.pop();
+            while (node.right != null) {
+                curr = node.right;
+                stack.push(curr);
+                while (curr.left != null) {
+                    curr = curr.left;
+                    stack.push(curr);
+                }
+            }
         }
     }
 
-    public void addRoot(T value) {
-        root = new Node<>(null, this, value);
-    }
+//    public Node<T> addChild(Node<T> parent, T value, boolean isRight) {
+//        if (parent == null) {
+//            throw new NullPointerException("Cannot add node to null parent");
+//        } else if (parent.containerTree != this) {
+//            throw new IllegalArgumentException
+//                    ("Parent does not belong to this tree");
+//        }
+//        Node<T> node = new Node<>(parent, this, value);
+//        if (isRight) parent.right = node;
+//        else parent.left = node;
+//        return node;
+//    }
 
-    public Node<T> getRoot() {
-        return root;
-    }
-
-    public Node<T> addChild(Node<T> parent, T value, boolean isRight) {
-        if (parent == null) {
-            throw new NullPointerException("Cannot add node to null parent");
-        } else if (parent.containerTree != this) {
-            throw new IllegalArgumentException
-                    ("Parent does not belong to this tree");
-        }
-        Node<T> node = new Node<>(parent, this, value);
-        if (isRight) parent.right = node;
-        else parent.left = node;
-        return node;
-    }
-
-    public Node<T> addChildLeft(Node<T> parent, T value) {
-        return addChild(parent, value, true);
-    }
-
-    public Node<T> addChildRight(Node<T> parent, T value) {
-        return addChild(parent, value, false);
-    }
+//    public Node<T> addChildLeft(Node<T> parent, T value) {
+//        return addChild(parent, value, true);
+//    }
+//
+//    public Node<T> addChildRight(Node<T> parent, T value) {
+//        return addChild(parent, value, false);
+//    }
 
 }

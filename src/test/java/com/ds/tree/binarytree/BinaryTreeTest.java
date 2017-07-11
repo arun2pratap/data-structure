@@ -16,9 +16,8 @@ public class BinaryTreeTest {
         binaryTree.postOrderTraverse(binaryTree.getRoot());
         System.out.println("  -postOrderTraversal");
 
-
         binaryTree.traverseOnlyLeft(binaryTree.getRoot());
-        System.out.println("  -postOrderTraversal");
+        System.out.println("  -traverseOnlyLeft");
     }
 
     @Test
@@ -27,22 +26,24 @@ public class BinaryTreeTest {
         integerBinaryTree.preOrderTraverseNonRecursive(integerBinaryTree.getRoot());
         System.out.println("  -preOrderTraversal Non-recursive");
         integerBinaryTree.inOrderTraverseNonRecursive(integerBinaryTree.getRoot());
-        System.out.println("  -preOrderTraversal Non-recursive");
+        System.out.println("  -IN_OrderTraversal Non-recursive");
+        integerBinaryTree.postOrderTraverseNonRecursive(integerBinaryTree.getRoot());
+        System.out.println("  -IN_OrderTraversal Non-recursive");
     }
 
     private BinaryTree<Integer> getIntegerBinaryTree() {
         BinaryTree<Integer> binaryTree = new BinaryTree<>();
         binaryTree.addRoot(1);
         BinaryTree.Node<Integer> root = binaryTree.getRoot();
-        BinaryTree.Node<Integer> node3 = binaryTree.addChild(root, 3, true);
-        BinaryTree.Node<Integer> node2 = binaryTree.addChild(root, 2, false);
-        binaryTree.addChild(node3, 7, true);
-        binaryTree.addChild(node3, 6, false);
-        BinaryTree.Node<Integer> node5 = binaryTree.addChild(node2, 5, true);
-        BinaryTree.Node<Integer> node4 = binaryTree.addChild(node2, 4, false);
-        binaryTree.addChild(node5, 10, false);
-        binaryTree.addChild(node4, 9, true);
-        binaryTree.addChild(node4, 8, false);
+        BinaryTree.Node<Integer> node3 = root.right = new BinaryTree.Node<>(3);
+        BinaryTree.Node<Integer> node2 = root.left = new BinaryTree.Node<>(2);
+        node3.right = new BinaryTree.Node<>(7);
+        node3.left = new BinaryTree.Node<>(6);
+        BinaryTree.Node<Integer> node5 = node2.right = new BinaryTree.Node<>(5);
+        BinaryTree.Node<Integer> node4 = node2.left = new BinaryTree.Node<>(4);
+        node5.left = new BinaryTree.Node<>(10);
+        node4.right = new BinaryTree.Node<>(9);
+        node4.left = new BinaryTree.Node<>(8);
         return binaryTree;
     }
 
