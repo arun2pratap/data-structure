@@ -51,4 +51,25 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
             return search(value,node.right);
         }
     }
+
+    public Node<T> delete(T value){
+        Node<T> node = getRoot();
+        if (node == null) {
+            return null;
+        }
+        return delete(value, node);
+    }
+
+    private Node<T> delete(T value, Node<T> node) {
+        Node<T> nodes = search(value, node);
+        if(nodes == null){
+            return null;
+        }else if(nodes.right == null){
+
+        }else if(nodes.left == null){
+
+        }
+        return null;
+    }
+
 }
