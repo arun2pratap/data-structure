@@ -54,22 +54,35 @@ public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<T> {
 
     public Node<T> delete(T value){
         Node<T> node = getRoot();
-        if (node == null) {
-            return null;
-        }
         return delete(value, node);
     }
 
     private Node<T> delete(T value, Node<T> node) {
-        Node<T> nodes = search(value, node);
-        if(nodes == null){
+        if(node == null){
             return null;
-        }else if(nodes.right == null){
-
-        }else if(nodes.left == null){
-
         }
-        return null;
+
+        if(value.compareTo(node.value) < 0){
+            node.left = delete(value, node.left);
+        }else if(value.compareTo(node.value) < 0){
+            node.right = delete(value, node.right);
+        }else{
+            if(node.right == null){
+                return node.left;
+            }else if(node.left == null){
+                return node.right;
+            }
+            node.value = minRight(node.right);
+            node.right = delete(node.value, node.right);
+        }
+        return node;
+    }
+
+    private T minRight(Node<T> node) {
+        if(node.left != null){
+            minRight(node.left);
+        }
+        return node.value;
     }
 
 }

@@ -23,5 +23,6 @@ com.ds.sort.selection
      Tree - Binary Tree - IN_Order Traversal NoN - Recursive -- PENDING
 
      Tree - Binary Search Tree - addNodes Recursive
-     Tree - Binary Search Tree - searchNode Recursive
+     Tree - Binary Search Tree - searchNode Recursive  --  NoN - Recursive -- PENDING
+     Tree - Binary Search Tree - delete Recursive   --  NoN - Recursive -- PENDING
 
