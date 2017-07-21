@@ -1,5 +1,7 @@
 package com.ds.tree.binarytree;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class BinaryTree<T> {
@@ -100,30 +102,46 @@ public class BinaryTree<T> {
         }
     }
 
-    public void postOrderTraverseNonRecursive(Node<T> root) {
-        Stack<Node<T>> stack = new Stack<>();
-        stack.push(root);
-        Node<T> curr = root;
-        while (curr.left != null) {
-            curr = curr.left;
-            while (curr.right != null) {
-                curr = curr.right;
-                stack.push(curr);
-            }
-            stack.push(curr);
+    public void levelOrderTreeTraversal(List<Node<T>> nodes){
+        if(nodes == null || nodes.isEmpty()){
+            return;
         }
-        while (!stack.isEmpty()) {
-            Node<T> node = stack.pop();
-            while (node.right != null) {
-                curr = node.right;
-                stack.push(curr);
-                while (curr.left != null) {
-                    curr = curr.left;
-                    stack.push(curr);
-                }
+        List<Node<T>> levelNodes = new ArrayList<>();
+        nodes.stream().forEach(node -> {
+            if(node != null) {
+                System.out.print(" " + node.value);
+                levelNodes.add(node.left);
+                levelNodes.add(node.right);
             }
-        }
+        });
+        System.out.println("");
+        levelOrderTreeTraversal(levelNodes);
     }
+
+//    public void postOrderTraverseNonRecursive(Node<T> root) {
+//        Stack<Node<T>> stack = new Stack<>();
+//        stack.push(root);
+//        Node<T> curr = root;
+//        while (curr.left != null) {
+//            curr = curr.left;
+//            while (curr.right != null) {
+//                curr = curr.right;
+//                stack.push(curr);
+//            }
+//            stack.push(curr);
+//        }
+//        while (!stack.isEmpty()) {
+//            Node<T> node = stack.pop();
+//            while (node.right != null) {
+//                curr = node.right;
+//                stack.push(curr);
+//                while (curr.left != null) {
+//                    curr = curr.left;
+//                    stack.push(curr);
+//                }
+//            }
+//        }
+//    }
 
 //    public Node<T> addChild(Node<T> parent, T value, boolean isRight) {
 //        if (parent == null) {

@@ -2,6 +2,9 @@ package com.ds.tree.binarytree;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Neo on 7/9/2017.
  */
@@ -18,6 +21,11 @@ public class BinaryTreeTest {
 
         binaryTree.traverseOnlyLeft(binaryTree.getRoot());
         System.out.println("  -traverseOnlyLeft");
+
+        List<BinaryTree.Node<Integer>> nodes = new ArrayList<>();
+        nodes.add(binaryTree.getRoot());
+        binaryTree.levelOrderTreeTraversal(nodes);
+        System.out.println("  -levelOrderTreeTraversal");
     }
 
     @Test
@@ -27,8 +35,8 @@ public class BinaryTreeTest {
         System.out.println("  -preOrderTraversal Non-recursive");
         integerBinaryTree.inOrderTraverseNonRecursive(integerBinaryTree.getRoot());
         System.out.println("  -IN_OrderTraversal Non-recursive");
-        integerBinaryTree.postOrderTraverseNonRecursive(integerBinaryTree.getRoot());
-        System.out.println("  -IN_OrderTraversal Non-recursive");
+//        integerBinaryTree.postOrderTraverseNonRecursive(integerBinaryTree.getRoot());
+//        System.out.println("  -IN_OrderTraversal Non-recursive");
     }
 
     private BinaryTree<Integer> getIntegerBinaryTree() {
