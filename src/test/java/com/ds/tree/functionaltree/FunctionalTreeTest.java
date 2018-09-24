@@ -3,14 +3,17 @@ package com.ds.tree.functionaltree;
 import com.ds.collection.linkedlist.LinkedListM;
 import org.junit.Test;
 
-import static javafx.scene.input.KeyCode.T;
-
 /**
  * Created by Neo on 7/8/2017.
  */
 public class FunctionalTreeTest {
     @Test
     public void testDepthFirstTraverse() {
+        String s= "aa";
+        System.out.println("s" + s.hashCode());
+        s = s + "bb";
+        System.out.println("s" + s.hashCode());
+
         FunctionalTree<Integer> functionalTree0 = new FunctionalTree<>(null, 0);
         FunctionalTree<Integer> functionalTree1 = new FunctionalTree<>(null, 1);
         LinkedListM<FunctionalTree<Integer>> children1 = new LinkedListM<>();
